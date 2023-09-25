@@ -5,8 +5,12 @@ export default defineNuxtConfig({
     typeCheck: true,
     strict: true
   },
+  srcDir: './src',
   app: {
-    baseURL: '/ecommerce-product-page'
+    baseURL: '/ecommerce-product-page',
+    head: {
+      title: 'Frontend Mentor | E-commerce product page'
+    }
   },
   css: ['~/assets/main.css']
 })
