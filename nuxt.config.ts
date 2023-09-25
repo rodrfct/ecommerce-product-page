@@ -9,7 +9,10 @@ export default defineNuxtConfig({
   app: {
     baseURL: '/ecommerce-product-page',
     head: {
-      title: 'Frontend Mentor | E-commerce product page'
+      title: 'Frontend Mentor | E-commerce product page',
+      link: [
+        {rel: 'icon', href: '/ecommerce-product-page/favicon.ico'}
+      ]
     }
   },
   css: ['~/assets/main.css']
