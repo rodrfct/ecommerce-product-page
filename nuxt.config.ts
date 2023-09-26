@@ -10,6 +10,9 @@ export default defineNuxtConfig({
     baseURL: '/ecommerce-product-page',
     head: {
       title: 'Frontend Mentor | E-commerce product page',
+      htmlAttrs: {
+        lang: 'en'
+      },
       link: [
         {rel: 'icon', href: '/ecommerce-product-page/favicon.ico'}
       ]

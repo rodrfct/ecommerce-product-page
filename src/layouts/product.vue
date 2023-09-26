@@ -1,6 +1,6 @@
 <template>
     <header>
-        <NuxtLink to="/"><img src="~/assets/images/logo.svg" alt=""></NuxtLink>
+        <NuxtLink to="/"><img src="~/assets/images/logo.svg" alt="home"></NuxtLink>
 
         <nav>
             <div class="links">
