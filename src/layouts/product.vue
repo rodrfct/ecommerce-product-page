@@ -27,7 +27,8 @@
 
 <style scoped>
 header {
-    padding: 20px 0 35px 0;
+    --bottom-padding: 35px;
+    padding: 20px 0 var(--bottom-padding) 0;
     border-bottom: 1px solid var(--Grayish-blue);
     display: flex;
     align-items: center;
@@ -50,16 +51,30 @@ nav {
 
     & a {
         margin: 0 5px;
+        cursor: pointer;
+
+        transition: border .2s ease;
+
+        &:hover {
+            padding-bottom: calc(var(--bottom-padding) + 5px);
+            border-bottom: 3px solid var(--Orange);
+        }
     }
 }
 
 .personal {
     > * {
         margin: 0 10px;
+        cursor: pointer;
     }
 
     #profile {
         width: 30px;
+        border-radius: 50%;
+
+        &:hover {
+            border: 1px solid var(--Orange);
+        }
     }
 }
 

@@ -115,6 +115,14 @@ const newPrice = computed(() => {
     display: flex;
     gap: 7px;
 
+    & img:hover,
+    & button:hover {
+        cursor: pointer;
+        filter: brightness(1.3);
+
+        transition: filter .3s ease;
+    }
+
     & button {
         background-color: var(--Orange);
         color: white;
@@ -122,6 +130,10 @@ const newPrice = computed(() => {
         border-radius: 10px;
         padding:  5px 25px;
         font-weight: 700;
+
+        & img {
+            filter: brightness(3);
+        }
     }
 }
 
