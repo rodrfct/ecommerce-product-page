@@ -1,6 +1,14 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   devtools: { enabled: true },
+  modules: ['@pinia/nuxt'],
+  pinia: {
+    autoImports: [
+      // automatically imports `defineStore`
+      'defineStore', // import { defineStore } from 'pinia'
+      ['defineStore', 'definePiniaStore'], // import { defineStore as definePiniaStore } from 'pinia'
+    ],
+  },
   typescript: {
     typeCheck: true,
     strict: true
@@ -14,7 +22,7 @@ export default defineNuxtConfig({
         lang: 'en'
       },
       link: [
-        {rel: 'icon', href: '/ecommerce-product-page/favicon.ico'}
+        {rel: 'icon', type: 'image/png', sizes: '32x32', href: '/ecommerce-product-page/favicon.ico'}
       ]
     }
   },

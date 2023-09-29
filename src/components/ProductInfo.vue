@@ -1,4 +1,8 @@
 <script setup lang="ts">
+import { useCartStore } from '@/stores/cart' 
+
+const { addToCart } = useCartStore()
+
 const props = defineProps({
     id: { type: Number, required: true },
     manufacturer: { type: String, required: true },
@@ -22,6 +26,7 @@ const newPrice = computed(() => {
         return (props.price * props.discount / 100).toFixed(2)
     }
 })
+
 </script>
 
 <template>
@@ -43,12 +48,12 @@ const newPrice = computed(() => {
 
         <div class="order">
             <div class="selector">
-                <img src="~/assets/icons/icon-minus.svg" alt="">
+                <img src="~/assets/icons/icon-minus.svg" alt="" @click="() => {if (amount) {amount--}}">
                 <p>{{ amount }}</p>
-                <img src="~/assets/icons/icon-plus.svg" alt="">
+                <img src="~/assets/icons/icon-plus.svg" alt="" @click="amount++">
             </div>
 
-            <button type="button">
+            <button type="button" @click="addToCart({pid: props.id, amount: amount})">
                 <img id="cart" src="~/assets/icons/icon-cart.svg" alt="">
 
                 Add to cart
