@@ -4,6 +4,12 @@ import { useCartStore } from '@/stores/cart'
 const cartDialog = ref<HTMLDialogElement | null>(null)
 
 const { cart } = useCartStore()
+
+function toggleCart(): void {
+    if (cartDialog.value?.open) {
+        cartDialog.value.close()
+    } else { cartDialog.value?.show() }
+}
 </script>
 
 <template>
@@ -20,7 +26,7 @@ const { cart } = useCartStore()
             </div>
 
             <div class="personal">
-                <img id="cart" src="~/assets/icons/icon-cart.svg" alt="" @click="cartDialog?.show">
+                <img id="cart" src="~/assets/icons/icon-cart.svg" alt="" @click="toggleCart">
                 
                 <img id="profile" src="~/assets/images/image-avatar.png" alt="">
 
@@ -103,6 +109,19 @@ nav {
 
         box-shadow: 1px 1px 10px 1px var(--Grayish-blue);
 
+        /* Transition  */
+        display: block;
+        pointer-events: none;
+        translate: 0 -50%;
+        opacity: 0;
+        transition: all .5s ease;
+
+        &[open] {
+            translate: 0;
+            opacity: 1;
+            pointer-events: all;
+        }
+
         & span,
         & p {
             padding: 15px;
@@ -130,7 +149,8 @@ nav {
         width: 30px;
         border-radius: 50%;
 
-        &:hover {
+        &:hover,
+        &:focus-visible {
             border: 1px solid var(--Orange);
         }
     }
