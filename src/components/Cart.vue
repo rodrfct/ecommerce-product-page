@@ -3,7 +3,7 @@ import { useCartStore } from '@/stores/cart';
 
 const cartDialog = ref<HTMLDialogElement | null>(null)
 
-const { cart } = useCartStore()
+const { cart, deleteFromCart } = useCartStore()
 
 function toggleCart(): void {
     if (cartDialog.value?.open) {
@@ -18,8 +18,18 @@ function toggleCart(): void {
     <dialog id="cart-dialog" ref="cartDialog">
         <span>Cart</span>
 
-        <div v-if="cart.length">
-            <div v-for="item in cart" class="item"></div>
+        <div v-if="cart.length" id="cart-content">
+            <div v-for="item in cart" class="item">
+                <img src="~/assets/images/image-product-1-thumbnail.jpg" alt="">
+
+                <div class="text">
+                    <p>{{ item.productName }}</p>
+                    <span>{{ `$${item.finalPrice.toFixed(2)}` }} x {{ item.amount }} <b>{{ `$${(item.finalPrice * item.amount).toFixed(2)}` }}</b></span>
+                </div>
+
+                <img class="delete-btn" src="~/assets/icons/icon-delete.svg" alt=""
+                @click="deleteFromCart(item.pid)">
+            </div>
 
             <button type="button">Checkout</button>
         </div>
@@ -33,13 +43,12 @@ function toggleCart(): void {
 }
 
 #cart-dialog {
-    cursor: initial;
     top: 150%;
-    /* */
     left: -300%;
 
-    aspect-ratio: 4/3;
-    width: 300px;
+    --width: 350px;
+    width: var(--width);
+    min-height: calc(var(--width) / 4 * 3);
     padding: 0;
     border: none;
     border-radius: 10px;
@@ -59,21 +68,71 @@ function toggleCart(): void {
         pointer-events: all;
     }
 
-    & span,
-    & p {
+    > span,
+    > p {
         padding: 15px;
         font-weight: 700;
     }
 
-    & span {
+    > span {
         display: block;
         border-bottom: 1px solid var(--Grayish-blue);
     }
 
-    & p {
+    > p {
         color: var(--Dark-grayish-blue);
         text-align: center;
         margin-top: 20%;
+    }
+}
+
+#cart-content {
+    height: 100%;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+    .item {
+        display: grid;
+        grid-template: 1fr / 15% 1fr auto;
+        gap: 10px;
+        place-items: center;
+
+        color: var(--Dark-grayish-blue);
+
+        & img {
+            aspect-ratio: 1/1;
+            width: 100%;
+            border-radius: 5px;
+        }
+
+        & p {
+            margin: 0;
+        }
+
+        & b {
+            color: initial;
+        }
+
+        .delete-btn {
+            cursor: pointer;
+        }
+    }
+
+    & button {
+        aspect-ratio: 6/1;
+        width: 100%;
+        margin-top: 10px;
+
+        background-color: var(--Orange);
+        color: white;
+        font-weight: 700;
+
+        border: none;
+        border-radius: 10px;
+
+        align-self: flex-end;
     }
 }
 </style>

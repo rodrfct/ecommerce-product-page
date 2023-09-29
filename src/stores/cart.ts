@@ -1,4 +1,9 @@
-type Item = { pid:number, amount: number }
+type Item = {
+    pid:number,
+    productName: string,
+    amount: number,
+    finalPrice: number,
+}
 
 export const useCartStore = defineStore('cart', () => {
 
@@ -12,8 +17,19 @@ export const useCartStore = defineStore('cart', () => {
             return
         }
 
-        cart.value.push({ pid: newItem.pid, amount: newItem.amount})
+        cart.value.push({
+            pid: newItem.pid,
+            productName: newItem.productName,
+            amount: newItem.amount,
+            finalPrice: newItem.finalPrice,
+        })
+    }
+
+    function deleteFromCart(id: number): void {
+        console.log(cart.value);
+        cart.value = cart.value.filter(a => a.pid !== id);
+        console.log(cart.value)
     }
   
-    return { cart, addToCart }
+    return { cart, addToCart, deleteFromCart }
   })

@@ -21,10 +21,12 @@ const props = defineProps({
 
 const amount = ref<number>(0)
 
-const newPrice = computed(() => {
+const newPrice = computed<number>((): number => {
     if (props.discount) {
-        return (props.price * props.discount / 100).toFixed(2)
+        return (props.price * props.discount / 100)
     }
+
+    return props.price
 })
 
 </script>
@@ -39,7 +41,7 @@ const newPrice = computed(() => {
 
         <div class="price">
             <div v-if="discount" class="discount">
-                <span id="new-price">{{ `$${newPrice}` }}</span>
+                <span id="new-price">{{ `$${newPrice.toFixed(2)}` }}</span>
                 <span id="percenteage">{{ `${discount}%` }}</span>
             </div>
 
@@ -53,7 +55,12 @@ const newPrice = computed(() => {
                 <img src="~/assets/icons/icon-plus.svg" alt="" @click="amount++">
             </div>
 
-            <button type="button" @click="addToCart({pid: props.id, amount: amount})">
+            <button type="button" @click="addToCart({
+                pid: props.id,
+                productName: props.productName,
+                amount: amount,
+                finalPrice: newPrice
+                }); amount = 0">
                 <img id="cart" src="~/assets/icons/icon-cart.svg" alt="">
 
                 Add to cart
