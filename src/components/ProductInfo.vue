@@ -116,9 +116,11 @@ const newPrice = computed(() => {
 
 .order {
     margin-top: 10%;
+    padding-right: 15%;
 
-    display: flex;
-    gap: 7px;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 15px;
 
     & img:hover,
     & button:hover {
@@ -147,6 +149,7 @@ const newPrice = computed(() => {
     border-radius: 15px;
     aspect-ratio: 3/1;
     height: 50px;
+    margin: 0;
     
     display: inline-grid;
     grid-template-columns: 1fr 1fr 1fr;

@@ -41,6 +41,15 @@ const modal = ref<HTMLDialogElement | null>(null)
 </template>
 
 <style>
+.lightbox {
+    padding: 0 7%;
+    /* height: 80%; */
+
+    /* > img {
+        height: 70%;
+    } */
+}
+
 .lightbox img {
     aspect-ratio: 1/1;
     border-radius: 10px;
@@ -67,7 +76,7 @@ const modal = ref<HTMLDialogElement | null>(null)
 }
 
 .lightbox dialog {
-    max-width: 60%;
+    max-width: 450px;
     border: none;
     background-color: inherit;
 

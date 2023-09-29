@@ -29,12 +29,6 @@ const images: string[] = [
 </script>
 
 <template>
-    <!-- <Lightbox
-    img1="~/assets/images/image-product-1"
-    img2="~/assets/images/image-product-2"
-    img3="~/assets/images/image-product-3"
-    img4="~/assets/images/image-product-4" /> -->
-
     <Lightbox :images="images" />
 
     <ProductInfo v-bind="sneakers" />
@@ -42,9 +36,9 @@ const images: string[] = [
 
 <style>
 main {
-    margin: 10% 0;
+    margin: 8% 0;
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 12%
+    gap: 10%;
 }
 </style>
