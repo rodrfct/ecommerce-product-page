@@ -65,7 +65,7 @@ function toggleCart(): void {
     &[open] {
         translate: 0;
         opacity: 1;
-        pointer-events: all;
+        pointer-events: initial;
     }
 
     > span,
@@ -133,6 +133,8 @@ function toggleCart(): void {
         border-radius: 10px;
 
         align-self: flex-end;
+
+        cursor: pointer;
     }
 }
 </style>
