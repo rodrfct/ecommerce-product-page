@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import ProductLink from '~/components/ProductLink.vue';
+
 definePageMeta({
     layout: 'product'
 })
