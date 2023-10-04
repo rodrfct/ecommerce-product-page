@@ -1,11 +1,8 @@
 <script setup lang="ts">
-import Lightbox from '~/components/Lightbox.vue';
-import ProductInfo from '~/components/ProductInfo.vue';
-
 import img1 from "~/assets/images/image-product-1.jpg";
 import img2 from "~/assets/images/image-product-2.jpg";
 import img3 from "~/assets/images/image-product-3.jpg";
-import img4 from"~/assets/images/image-product-4.jpg";
+import img4 from "~/assets/images/image-product-4.jpg";
 
 definePageMeta({
     layout: 'product'
@@ -29,13 +26,15 @@ const images: string[] = [
 </script>
 
 <template>
-    <Lightbox :images="images" />
+    <div class="wrapper">
+        <Lightbox :images="images" />
 
-    <ProductInfo v-bind="sneakers" />
+        <ProductInfo v-bind="sneakers" />
+    </div>
 </template>
 
-<style>
-main {
+<style scoped>
+.wrapper {
     margin: 8% 0;
     display: grid;
     grid-template-columns: 1fr 1fr;
