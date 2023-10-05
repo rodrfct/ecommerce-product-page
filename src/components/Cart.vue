@@ -5,6 +5,14 @@ const cartDialog = ref<HTMLDialogElement | null>(null)
 
 const { cart, deleteFromCart } = useCartStore()
 
+const quantity = computed<number>((): number => {
+    let q: number = 0
+
+    cart.forEach(i => q += i.amount)
+
+    return q
+})
+
 function toggleCart(): void {
     if (cartDialog.value?.open) {
         cartDialog.value.close()
@@ -13,7 +21,10 @@ function toggleCart(): void {
 </script>
 
 <template>
-    <img id="cart" src="~/assets/icons/icon-cart.svg" alt="" @click="toggleCart">
+    <button id="cart" type="button">
+        <div v-show="quantity" class="counter">{{ quantity }}</div>
+        <img src="~/assets/icons/icon-cart.svg" alt="" @click="toggleCart">
+    </button>
 
     <dialog id="cart-dialog" ref="cartDialog">
         <span>Cart</span>
@@ -37,9 +48,26 @@ function toggleCart(): void {
     </dialog>
 </template>
 
-<style>
+<style scoped>
 #cart {
     cursor: pointer;
+    background-color: inherit;
+    border: none;
+
+    position: relative;
+
+    .counter {
+        position: absolute;
+        top: -20%;
+        right: 0;
+
+        background-color: var(--Orange);
+        color: white;
+        font-size: .8em;
+        font-weight: 700;
+        padding: 0 6px;
+        border-radius: 45%;
+    }
 }
 
 #cart-dialog {
@@ -53,6 +81,7 @@ function toggleCart(): void {
     border: none;
     border-radius: 10px;
 
+    z-index: 5;
     box-shadow: 1px 1px 10px 1px var(--Grayish-blue);
 
     /* Transition  */
@@ -83,6 +112,13 @@ function toggleCart(): void {
         color: var(--Dark-grayish-blue);
         text-align: center;
         margin-top: 20%;
+    }
+
+    /* Not the best for reusability tbh */
+    @media (width <= 375px) {
+        top: 9%;
+        left: 0;
+        right: 0;
     }
 }
 

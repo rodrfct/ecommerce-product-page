@@ -40,7 +40,9 @@ header {
     --bottom-padding: 35px;
     padding: 20px 0 var(--bottom-padding) 0;
     border-bottom: 1px solid var(--Grayish-blue);
-    display: flex;
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    gap: 15px;
     align-items: center;
 
     > a {
@@ -52,6 +54,10 @@ header {
         border: none;
         padding: 15px 10px;
         gap: 5px;
+
+        .personal {
+            position: static;
+        }
     }
 }
 
@@ -91,20 +97,32 @@ nav {
     
         height: 100%;
         width: 65%;
+        padding: 15px;
         background-color: white;
+        
         translate: -100% 0;
-
         transition: translate .5s ease;
+
         &.sidenav {
             translate: 0;
         }
 
-        & a {
+        > button {
+            background-color: inherit;
+            border: none;
+        }
+
+        & .links a {
             display: block;
+            margin: 15px 0;
+            color: var(--Black);
+            font-weight: 700;
         }
 
         #nav-close {
             display: block;
+            margin-bottom: 15%;
+            cursor: pointer;
         }
     }
 

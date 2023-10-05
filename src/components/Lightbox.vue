@@ -10,7 +10,18 @@ const modal = ref<HTMLDialogElement | null>(null)
 
 <template>
     <div class="lightbox">
-        <img :src="images[activeImg]" alt="" @click="modal?.showModal">
+        <div class="slider">
+            <img class="arrow"
+            src="~/assets/icons/icon-previous.svg" alt=""
+            @click="() => {if(activeImg > 0) {activeImg--}}">
+
+            <img :src="images[activeImg]" alt="" @click="modal?.showModal">
+
+            <img class="arrow"
+            src="~/assets/icons/icon-next.svg" alt=""
+            @click="() => {if(activeImg < 3) {activeImg++}}">
+        </div>
+
         <div class="selector">
             <img v-for="(img, index) in images" :src="img" alt=""
             :class="{active : index == activeImg}"
@@ -26,7 +37,9 @@ const modal = ref<HTMLDialogElement | null>(null)
                 <img class="arrow"
                 src="~/assets/icons/icon-previous.svg" alt=""
                 @click="() => {if(activeImg > 0) {activeImg--}}">
+
                 <img :src="images[activeImg]" alt="">
+                
                 <img class="arrow"
                 src="~/assets/icons/icon-next.svg" alt=""
                 @click="() => {if(activeImg < 3) {activeImg++}}">
@@ -103,6 +116,12 @@ const modal = ref<HTMLDialogElement | null>(null)
     position: relative;
 
     .arrow {
+        display: none;
+
+        dialog & {
+            display: block;
+        }
+
         position: absolute;
         top: 50%;
         
@@ -123,13 +142,26 @@ const modal = ref<HTMLDialogElement | null>(null)
             left: 100%;
             right: 0;
         }
+
+        @media (width <= 375px) {
+            display: block;
+            width: 10px;
+            border: none;
+
+            &:first-child {
+                translate: 50% -50%;
+            }
+
+            &:last-child {
+                translate: -150% -50%;
+            }
+        }
     }
 }
 
 @media (width <= 375px) {
     .lightbox {
         padding: 0;
-        height: fit-content;
 
         > .selector {
             display: none;
