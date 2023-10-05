@@ -170,4 +170,33 @@ const newPrice = computed<number>((): number => {
     }
 }
 
+@media (width <= 375px) {
+    .product-info {
+        padding: 0 5%;
+
+        & h2 {
+            font-size: .8em;
+        }
+        & h1 {
+            font-size: 1.6em;
+        }
+    }
+
+    .price {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .order {
+        margin-top: 20px;
+        padding: 0;
+        grid-template: 1fr 1fr / 1fr;
+
+        .selector {
+            aspect-ratio: unset;
+        }
+    }
+}
+
 </style>

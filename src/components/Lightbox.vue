@@ -43,11 +43,6 @@ const modal = ref<HTMLDialogElement | null>(null)
 <style>
 .lightbox {
     padding: 0 7%;
-    /* height: 80%; */
-
-    /* > img {
-        height: 70%;
-    } */
 }
 
 .lightbox img {
@@ -128,6 +123,23 @@ const modal = ref<HTMLDialogElement | null>(null)
             left: 100%;
             right: 0;
         }
+    }
+}
+
+@media (width <= 375px) {
+    .lightbox {
+        padding: 0;
+        height: fit-content;
+
+        > .selector {
+            display: none;
+        }
+    }
+
+    .lightbox img {
+        aspect-ratio: 8/7;
+        width: 100%;
+        border-radius: 0;
     }
 }
 </style>

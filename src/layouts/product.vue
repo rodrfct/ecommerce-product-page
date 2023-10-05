@@ -1,12 +1,18 @@
 <script setup lang="ts">
 import Cart from '~/components/Cart.vue';
+
+const sidenav = ref<boolean>(false)
 </script>
 
 <template>
     <header>
+        <button id="nav-toggle" @click="sidenav = !sidenav"><img src="~/assets/icons/icon-menu.svg" alt=""></button>
+        
         <NuxtLink to="/"><img src="~/assets/images/logo.svg" alt="home"></NuxtLink>
 
-        <nav>
+        <nav :class="{sidenav: sidenav}">
+            <button id="nav-close" @click="sidenav = !sidenav"><img src="~/assets/icons/icon-close.svg" alt=""></button>
+
             <div class="links">
                 <a>Collections</a>
                 <a>Men</a>
@@ -14,13 +20,13 @@ import Cart from '~/components/Cart.vue';
                 <a>About</a>
                 <a>Contact</a>
             </div>
-
-            <div class="personal">
-                <Cart />
-                
-                <img id="profile" src="~/assets/images/image-avatar.png" alt="">
-            </div>
         </nav>
+        
+        <div class="personal">
+            <Cart />
+            
+            <img id="profile" src="~/assets/images/image-avatar.png" alt="">
+        </div>
     </header>
 
     <main>
@@ -41,6 +47,29 @@ header {
         display: inline;
         margin-right: 5%;
     }
+    
+    @media (width <= 375px) {
+        border: none;
+        padding: 15px 10px;
+        gap: 5px;
+    }
+}
+
+#nav-toggle {
+    display: none;
+    background-color: inherit;
+    border: none;
+    margin: 0 5px;
+
+    cursor: pointer;
+
+    & img {
+        color: black;
+    }
+    
+    @media (width <= 375px) {
+        display: inline;
+    }
 }
 
 nav {
@@ -48,6 +77,37 @@ nav {
     display: inline-flex;
     justify-content: space-between;
     align-items: center;
+
+    #nav-close {
+        display: none;
+    }
+
+    @media (width <= 375px) {
+        display: block;
+        position: fixed;
+        top: 0;
+        left: 0;
+        z-index: 10;
+    
+        height: 100%;
+        width: 65%;
+        background-color: white;
+        translate: -100% 0;
+
+        transition: translate .5s ease;
+        &.sidenav {
+            translate: 0;
+        }
+
+        & a {
+            display: block;
+        }
+
+        #nav-close {
+            display: block;
+        }
+    }
+
 }
 
 .links {
@@ -70,8 +130,9 @@ nav {
     /*This is just so the pfp doesn't move on hover */
     display: grid;
     align-items: center;
-    grid-template-columns: 40px 40px;
+    grid-template-columns: auto 40px;
     grid-template-rows: 30px;
+    gap: 5px;
     
     position: relative;
 

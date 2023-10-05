@@ -38,6 +38,11 @@ const images: string[] = [
     margin: 8% 0;
     display: grid;
     grid-template-columns: 1fr 1fr;
-    gap: 10%;
+    gap: 15px 10%;
+
+    @media (width <= 375px) {
+        margin: 0;
+        grid-template: auto 1fr / 1fr;
+    }
 }
 </style>
